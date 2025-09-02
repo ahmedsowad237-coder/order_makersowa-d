@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .discount-btn.active {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5), 0 2px 4px -1px rgba(59, 130, 246, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-4">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8 space-y-6">
+
+        <!-- Header -->
+        <header class="flex flex-col md:flex-row justify-between items-center mb-6">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2 md:mb-0">Shopping List</h1>
+            <div class="flex items-center space-x-2 w-full md:w-auto">
+                <div class="relative w-full">
+                    <input type="text" id="searchProducts" placeholder="Search products..." class="w-full pl-10 pr-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200">
+                    <svg class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <button id="clearSearch" class="p-2 rounded-lg bg-red-500 text-white hover:bg-red-600 transition-all duration-200">
+                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <hr class="border-gray-200">
+
+        <main class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Product List Section -->
+            <section>
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Product List</h2>
+                <div id="productList" class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                    <!-- Products will be dynamically added here -->
+                </div>
+                
+                <!-- Discount Options with fixed buttons -->
+                <div class="mt-4 flex flex-col space-y-2">
+                    <div class="text-lg font-medium text-gray-700">ডিসকাউন্ট:</div>
+                    <div id="discountOptions" class="flex flex-wrap gap-2">
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="0">নো ডিসকাউন্ট</button>
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="5">5 টাকা</button>
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="10">10 টাকা</button>
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="15">15 টাকা</button>
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="20">20 টাকা</button>
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="25">25 টাকা</button>
+                        <button class="discount-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 transition-all duration-200" data-discount="30">30 টাকা</button>
+                    </div>
+                </div>
+
+                <!-- Delivery Charge Options -->
+                <div class="mt-4 flex flex-col space-y-2">
+                    <div class="text-lg font-medium text-gray-700">ডেলিভারি চার্জ:</div>
+                    <div class="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="deliveryCharge" value="80" checked class="form-radio text-blue-600">
+                            <span class="ml-2">ঢাকার ভিতরে (80 টাকা)</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="deliveryCharge" value="100" class="form-radio text-blue-600">
+                            <span class="ml-2">ঢাকার পাশে (100 টাকা)</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="deliveryCharge" value="150" class="form-radio text-blue-600">
+                            <span class="ml-2">ঢাকার বাইরে (150 টাকা)</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Selected Items and Total Section -->
+            <section class="flex flex-col">
+                <h2 class="text-2xl font-semibold text-gray-700 mb-4">Selected Items</h2>
+                <div class="flex-grow bg-gray-50 rounded-lg p-4 shadow-inner border border-gray-200">
+                    <textarea id="selectedItemsOutput" class="w-full h-48 bg-transparent text-gray-800 resize-none font-mono" readonly placeholder="Selected items will appear here..."></textarea>
+                </div>
+                
+                <!-- Total Amount Display -->
+                <div id="totalAmount" class="mt-4 text-right text-xl font-bold text-gray-900 bg-gray-200 p-4 rounded-lg shadow">
+                    <!-- Total will be dynamically updated here -->
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="mt-6 flex justify-between space-x-4">
+                    <button id="deleteAllBtn" class="flex-1 px-6 py-3 bg-red-500 text-white rounded-lg font-semibold text-lg hover:bg-red-600 transition-all duration-200 shadow-md">
+                        Delete All
+                    </button>
+                    <button id="copyBtn" class="flex-1 px-6 py-3 bg-green-500 text-white rounded-lg font-semibold text-lg hover:bg-green-600 transition-all duration-200 shadow-md">
+                        Copy
+                    </button>
+                </div>
+                <div id="copyFeedback" class="mt-4 hidden text-center px-4 py-2 rounded-lg font-semibold"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js">
+       
+    </script>
+
+</body>
+</html>
