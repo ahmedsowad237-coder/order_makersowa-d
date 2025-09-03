@@ -1,4 +1,4 @@
-   // Consolidated data for all options
+     // Consolidated data for all options
         const allOptions = [
             { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500 }] },
@@ -53,24 +53,23 @@
         // Function to render all options to UI
         function renderOptions(filteredOptions = allOptions) {
             optionListEl.innerHTML = '';
-            let currentCategory = '';
             filteredOptions.forEach(option => {
                 const optionEl = document.createElement('div');
-                optionEl.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-50 border border-gray-200 transition-shadow hover:shadow-md';
+                optionEl.className = 'flex items-center justify-between p-2 rounded-lg bg-white border border-gray-200 transition-shadow hover:shadow-md';
                 
                 if (option.type === "status" && option.name === "PAID") {
                     optionEl.innerHTML = `
-                        <div class="text-gray-800 font-medium text-sm">${option.name}</div>
+                        <div class="text-gray-800 font-medium text-xs">PAID</div>
                         <label class="flex items-center space-x-2 cursor-pointer">
-                            <input type="checkbox" id="paidCheckbox" data-name="${option.name}" data-type="${option.type}" class="status-option form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors duration-200">
+                            <input type="checkbox" id="paidCheckbox" data-name="${option.name}" data-type="${option.type}" class="status-option form-checkbox h-4 w-4 text-purple-600 rounded focus:ring-purple-500 focus:ring-opacity-50 transition-colors duration-200">
                         </label>
                     `;
                 } else {
                     optionEl.innerHTML = `
-                        <div class="text-gray-800 font-medium text-sm">${option.name}</div>
+                        <div class="text-gray-800 font-medium text-xs">${option.name}</div>
                         <div class="flex items-center space-x-1">
                             ${option.quantities.map(q => `
-                                <button data-name="${option.name}" data-size="${q.size}" data-price="${q.price}" data-type="${option.type}" class="option-btn px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 hover:text-blue-800 transition-colors duration-200 text-xs">
+                                <button data-name="${option.name}" data-size="${q.size}" data-price="${q.price}" data-type="${option.type}" class="option-btn px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-purple-200 hover:text-purple-800 transition-colors duration-200 text-xs">
                                     ${q.size}
                                 </button>
                             `).join('')}
@@ -89,29 +88,29 @@
                 const buttonType = btn.dataset.type;
                 const buttonSize = btn.dataset.size;
 
-                btn.classList.remove('bg-blue-500', 'bg-purple-500', 'bg-orange-500', 'text-white');
+                btn.classList.remove('bg-purple-500', 'bg-purple-600', 'bg-red-500', 'bg-green-500', 'text-white');
                 btn.classList.add('bg-gray-200', 'text-gray-700');
 
                 if (buttonType === 'product') {
                     const existingItem = order.find(item => item.name === buttonName && item.size === buttonSize);
                     if (existingItem) {
-                        btn.classList.add('bg-blue-500', 'text-white');
+                        btn.classList.add('bg-purple-500', 'text-white');
                     }
                 } else if (buttonType === 'delivery') {
                     if (selectedDeliveryCharge && selectedDeliveryCharge.size === buttonSize) {
-                        btn.classList.add('bg-blue-500', 'text-white');
+                        btn.classList.add('bg-purple-500', 'text-white');
                     }
                 } else if (buttonType === 'discount') {
                     const discountValue = parseFloat(btn.dataset.price);
                     if (selectedDiscount === discountValue) {
-                        btn.classList.add('bg-blue-500', 'text-white');
-                    }
-                } else if (buttonType === 'status') {
-                    if (buttonName === 'গিফট' && isGift) {
                         btn.classList.add('bg-purple-500', 'text-white');
                     }
-                    if (buttonName === 'রিটার্ন' && isReturn) {
-                        btn.classList.add('bg-orange-500', 'text-white');
+                } else if (buttonType === 'status') {
+                    if (buttonSize === 'গিফট' && isGift) {
+                        btn.classList.add('bg-green-500', 'text-white');
+                    }
+                    if (buttonSize === 'রিটার্ন' && isReturn) {
+                        btn.classList.add('bg-red-500', 'text-white');
                     }
                 }
             });
@@ -131,7 +130,11 @@
             order.forEach((item, index) => {
                 summaryContent += `<li class="flex items-center justify-between">
                     <span class="flex-grow">${index + 1}. ${item.quantity}x ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা</span>
-                    <button class="delete-btn bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold" data-index="${index}">-</button>
+                    <button class="delete-btn text-gray-500 hover:text-red-500 focus:outline-none transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
                 </li>`;
                 totalProductPrice += item.price * item.quantity;
             });
