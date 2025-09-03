@@ -10,28 +10,30 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
-            font-size: 0.875rem; /* Small font size for better fit */
+            font-size: 0.625rem; /* আরও ছোট ফন্ট সাইজ */
         }
         .container {
             max-width: 640px;
         }
         .text-sm {
-            font-size: 0.875rem;
+            font-size: 0.625rem; /* আরও ছোট ফন্ট সাইজ */
         }
         .text-xs {
-            font-size: 0.75rem;
+            font-size: 0.5rem; /* আরও ছোট ফন্ট সাইজ */
+        }
+        .text-lg {
+            font-size: 0.875rem; /* নতুন হেডার ফন্ট সাইজ */
         }
         .delete-btn-product {
             color: #ef4444;
             font-size: 1rem;
         }
-        /* Hide scrollbar for entire body */
         body::-webkit-scrollbar {
             display: none;
         }
         body {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         .no-scrollbar::-webkit-scrollbar {
             display: none;
@@ -48,7 +50,7 @@
         <!-- Header and Logo -->
         <div class="flex flex-col items-center justify-center mb-6">
             <img src="https://placehold.co/100x100?text=👶" alt="Baby Photo Logo" class="rounded-full w-24 h-24 object-cover">
-            <h2 class="mt-2 text-xl font-semibold text-gray-800">আফরিন হোমমেড বেবি ফুড</h2>
+            <h2 class="mt-2 text-lg font-semibold text-gray-800">আফরিন হোমমেড বেবি ফুড</h2>
         </div>
 
         <!-- Search Bar -->
@@ -63,51 +65,20 @@
         
         <!-- Search Results Section -->
         <div class="mb-4">
-            <div id="productList" class="space-y-2 max-h-60 overflow-y-auto no-scrollbar mb-4 p-2 border border-gray-200 rounded-lg">
-                <!-- Products will be generated here by JavaScript -->
+            <h2 class="text-sm font-semibold mb-2">খাবারের তালিকা</h2>
+            <div id="optionList" class="space-y-2 max-h-40 overflow-y-auto no-scrollbar mb-4 p-2 border border-gray-200 rounded-lg">
+                <!-- Products, delivery, and discounts will be generated here by JavaScript -->
             </div>
         </div>
 
         <!-- Order Summary Section -->
         <div class="mt-4 border-t border-gray-200 pt-4">
             <h2 class="text-sm font-semibold mb-2">অর্ডারের সারাংশ</h2>
-            <!-- Updated summary box with dynamic height -->
-            <div id="orderSummary" class="bg-gray-50 p-4 rounded-lg border border-gray-200 min-h-[500px] whitespace-pre-line text-xs">
+            <div id="orderSummary" class="bg-gray-50 p-4 rounded-lg border border-gray-200 min-h-[150px] text-xs">
                 <!-- Order details will be displayed here -->
             </div>
         </div>
 
-        <!-- Options Section (Updated Layout) -->
-        <div class="space-y-4 mt-4">
-            <!-- Delivery Charges -->
-            <div class="flex items-center justify-between p-2 rounded-lg bg-gray-50 border border-gray-200">
-                <span class="text-gray-800 font-medium text-sm">ডেলিভারি চার্জ</span>
-                <div id="deliveryCharges" class="flex space-x-1">
-                    <!-- Delivery charges here -->
-                </div>
-            </div>
-
-            <!-- Discount -->
-            <div class="flex items-center justify-between p-2 rounded-lg bg-gray-50 border border-gray-200">
-                <span class="text-gray-800 font-medium text-sm">ডিসকাউন্ট</span>
-                <div id="discountOptions" class="flex space-x-1">
-                    <!-- Discount options here -->
-                </div>
-            </div>
-            
-            <!-- Paid, Gift, Return -->
-            <div class="flex items-center justify-between p-2 rounded-lg bg-gray-50 border border-gray-200">
-                <label for="paidCheckbox" class="flex items-center space-x-2 cursor-pointer">
-                    <input type="checkbox" id="paidCheckbox" class="form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors duration-200">
-                    <span class="text-sm text-gray-700">PAID</span>
-                </label>
-                <div class="flex space-x-1">
-                    <button id="giftButton" class="px-3 py-1 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-purple-200 hover:text-purple-800 transition-colors duration-200 text-xs">Gift</button>
-                    <button id="returnButton" class="px-3 py-1 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-orange-200 hover:text-orange-800 transition-colors duration-200 text-xs">Return</button>
-                </div>
-            </div>
-        </div>
-        
         <!-- Delete and Copy Buttons -->
         <div class="mt-4 flex justify-end space-x-2">
             <button id="deleteButton" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-200 text-sm">
