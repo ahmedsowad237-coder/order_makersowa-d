@@ -9,53 +9,56 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            font-size: 0.625rem; /* আরও ছোট ফন্ট সাইজ */
+            background-color: #f7fafc;
+            color: #1a202c;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             max-width: 640px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 2rem);
         }
         .text-sm {
-            font-size: 0.625rem; /* আরও ছোট ফন্ট সাইজ */
+            font-size: 0.875rem;
         }
         .text-xs {
-            font-size: 0.5rem; /* আরও ছোট ফন্ট সাইজ */
+            font-size: 0.75rem;
         }
         .text-lg {
-            font-size: 0.875rem; /* নতুন হেডার ফন্ট সাইজ */
+            font-size: 1.125rem;
         }
-        .delete-btn-product {
-            color: #ef4444;
-            font-size: 1rem;
-        }
-        body::-webkit-scrollbar {
-            display: none;
-        }
-        body {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* Hide scrollbar for webkit browsers */
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
+        /* Hide scrollbar for other browsers */
         .no-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
     </style>
 </head>
-<body class="bg-gray-100 p-4">
+<body class="bg-gray-100">
 
-    <div class="container mx-auto bg-white rounded-xl shadow-lg p-6 my-8 border border-gray-200">
-        <!-- Header and Logo -->
+    <div class="container">
+        <!-- Header Section -->
         <div class="flex flex-col items-center justify-center mb-6">
-            <img src="https://placehold.co/100x100?text=👶" alt="Baby Photo Logo" class="rounded-full w-24 h-24 object-cover">
-            <h2 class="mt-2 text-lg font-semibold text-gray-800">আফরিন হোমমেড বেবি ফুড</h2>
+            <h2 class="text-lg font-semibold text-gray-800">Afrin Homemade Baby Food</h2>
         </div>
 
         <!-- Search Bar -->
         <div class="mb-4 relative">
-            <input type="text" id="searchInput" placeholder="Search Products..." class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-blue-500 transition-colors duration-200 text-sm" aria-label="Search products">
+            <input type="text" id="searchInput" placeholder="Search Products..." class="w-full px-4 py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-purple-400 transition-colors duration-200 text-sm">
             <button id="clearSearch" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
@@ -63,19 +66,22 @@
             </button>
         </div>
         
-        <!-- Search Results Section -->
-        <div class="mb-4">
-            <h2 class="text-sm font-semibold mb-2">খাবারের তালিকা</h2>
-            <div id="optionList" class="space-y-2 max-h-40 overflow-y-auto no-scrollbar mb-4 p-2 border border-gray-200 rounded-lg">
-                <!-- Products, delivery, and discounts will be generated here by JavaScript -->
+        <!-- Main Scrollable Content -->
+        <div class="flex-grow overflow-y-auto no-scrollbar">
+            <!-- Product List Section -->
+            <div class="mb-4">
+                <h2 class="text-sm font-semibold mb-2">খাবারের তালিকা</h2>
+                <div id="optionList" class="space-y-2 max-h-60 overflow-y-auto no-scrollbar mb-4 p-2 border border-gray-200 rounded-lg">
+                    <!-- Products, delivery, and discounts will be generated here by JavaScript -->
+                </div>
             </div>
-        </div>
 
-        <!-- Order Summary Section -->
-        <div class="mt-4 border-t border-gray-200 pt-4">
-            <h2 class="text-sm font-semibold mb-2">অর্ডারের সারাংশ</h2>
-            <div id="orderSummary" class="bg-gray-50 p-4 rounded-lg border border-gray-200 min-h-[150px] text-xs">
-                <!-- Order details will be displayed here -->
+            <!-- Order Summary Section -->
+            <div class="mt-4 border-t border-gray-200 pt-4">
+                <h2 class="text-sm font-semibold mb-2">অর্ডারের সারাংশ</h2>
+                <div id="orderSummary" class="bg-gray-50 p-4 rounded-lg border border-gray-200 max-h-[300px] overflow-y-auto no-scrollbar text-xs">
+                    <!-- Order details will be displayed here -->
+                </div>
             </div>
         </div>
 
@@ -84,7 +90,7 @@
             <button id="deleteButton" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition-colors duration-200 text-sm">
                 Delete
             </button>
-            <button id="copyButton" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200 text-sm">
+            <button id="copyButton" class="px-4 py-2 bg-purple-500 text-white font-semibold rounded-lg shadow-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-colors duration-200 text-sm">
                 Copy
             </button>
         </div>
@@ -92,7 +98,7 @@
 
     <!-- JavaScript code -->
     <script src="script.js">
-     
+   
     </script>
 </body>
 </html>
