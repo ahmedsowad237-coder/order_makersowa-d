@@ -1,32 +1,38 @@
-// Data for products, delivery, and discounts
-        const products = [
-            { name: "রাজমা খিচুড়ি", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
-            { name: "সিরিয়াল স্টেজ ১", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500 }] },
-            { name: "সিরিয়াল স্টেজ ২", quantities: [{ size: "250 গ্রাম", price: 180 }, { size: "500 গ্রাম", price: 350 }, { size: "1 কেজি", price: 700 }] },
-            { name: "হোমমেড ওটস(ওটমিল)", quantities: [{ size: "250 গ্রাম", price: 420 }, { size: "500 গ্রাম", price: 820 }, { size: "1 কেজি", price: 1600 }] },
-            { name: "জাফরানি ফিরনি মিক্সড", quantities: [{ size: "250 গ্রাম", price: 220 }, { size: "500 গ্রাম", price: 420}, { size: "1 কেজি", price: 800}] },
-            { name: "সাগুদানা", quantities: [{ size: "500 গ্রাম", price: 150}, { size: "1 কেজি", price: 300}] },
-            { name: "তিন ফলের সিরিয়াল", quantities: [{ size: "250 গ্রাম", price: 320}, { size: "500 গ্রাম", price: 620}, { size: "1 কেজি", price: 1200}] },
-            { name: "রাইস স্পেশাল সুজি", quantities: [{ size: "250 গ্রাম", price: 130}, { size: "500 গ্রাম", price: 260}, { size: "1 কেজি", price: 500}] },
-            { name: "আয়রনসমৃদ্ধ পুষ্টিকর বিন্নি সুজি",quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500}] },
-            { name: "মাল্টিগ্রেইন বাদাম সুজি", quantities: [{ size: "250 গ্রাম", price: 160}, { size: "500 গ্রাম", price: 320}, { size: "1 কেজি", price: 600}] },
-            { name: "বার্লি সিরিয়াল (তালবিনা)", quantities: [{ size: "250 গ্রাম", price: 220 }, { size: "500 গ্রাম", price: 420 },{ size: "1 কেজি", price: 800}] },
-            { name: "তাল মিছরি", quantities: [{ size: "200 গ্রাম", price: 140}, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 440}] },
-            { name: "খেজুর চিনি", quantities: [{ size: "250 গ্রাম", price: 250 }, { size: "500 গ্রাম", price: 500 }, { size: "1 কেজি", price: 1000}] },
-            { name: "আলমারাই চিজ", quantities: [{ size: "8 পিস", price: 300 }, { size: "32 ফুল বক্স", price: 1200 }] },
-            { name: "লাফিং কাউ চিজ", quantities: [{ size: "8 পিস", price: 300 }, { size: "32 ফুল বক্স", price: 1200 }] },
-            { name: "রোলেড বেবি ওটস", quantities: [{ size: "500 গ্রাম", price: 650 }] },
-            { name: "ইরানি জাফরান", quantities: [{ size: "1 গ্রাম", price: 400 }] },
-            { name: "পিঙ্ক সল্ট", quantities: [{ size: "250 গ্রাম", price: 120}, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 480}] },
+   // Consolidated data for all options
+        const allOptions = [
+            { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
+            { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500 }] },
+            { name: "সিরিয়াল স্টেজ ২", type: "product", quantities: [{ size: "250 গ্রাম", price: 180 }, { size: "500 গ্রাম", price: 350 }, { size: "1 কেজি", price: 700 }] },
+            { name: "হোমমেড ওটস(ওটমিল)", type: "product", quantities: [{ size: "250 গ্রাম", price: 420 }, { size: "500 গ্রাম", price: 820 }, { size: "1 কেজি", price: 1600 }] },
+            { name: "জাফরানি ফিরনি মিক্সড", type: "product", quantities: [{ size: "250 গ্রাম", price: 220 }, { size: "500 গ্রাম", price: 420}, { size: "1 কেজি", price: 800}] },
+            { name: "সাগুদানা", type: "product", quantities: [{ size: "500 গ্রাম", price: 150}, { size: "1 কেজি", price: 300}] },
+            { name: "তিন ফলের সিরিয়াল", type: "product", quantities: [{ size: "250 গ্রাম", price: 320}, { size: "500 গ্রাম", price: 620}, { size: "1 কেজি", price: 1200}] },
+            { name: "রাইস স্পেশাল সুজি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130}, { size: "500 গ্রাম", price: 260}, { size: "1 কেজি", price: 500}] },
+            { name: "আয়রনসমৃদ্ধ পুষ্টিকর বিন্নি সুজি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500}] },
+            { name: "মাল্টিগ্রেইন বাদাম সুজি", type: "product", quantities: [{ size: "250 গ্রাম", price: 160}, { size: "500 গ্রাম", price: 320}, { size: "1 কেজি", price: 600}] },
+            { name: "বার্লি সিরিয়াল (তালবিনা)", type: "product", quantities: [{ size: "250 গ্রাম", price: 220 }, { size: "500 গ্রাম", price: 420 },{ size: "1 কেজি", price: 800}] },
+            { name: "তাল মিছরি", type: "product", quantities: [{ size: "200 গ্রাম", price: 140}, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 440}] },
+            { name: "খেজুর চিনি", type: "product", quantities: [{ size: "250 গ্রাম", price: 250 }, { size: "500 গ্রাম", price: 500 }, { size: "1 কেজি", price: 1000}] },
+            { name: "আলমারাই চিজ", type: "product", quantities: [{ size: "8 পিস", price: 300 }, { size: "32 ফুল বক্স", price: 1200 }] },
+            { name: "লাফিং কাউ চিজ", type: "product", quantities: [{ size: "8 পিস", price: 300 }, { size: "32 ফুল বক্স", price: 1200 }] },
+            { name: "রোলেড বেবি ওটস", type: "product", quantities: [{ size: "500 গ্রাম", price: 650 }] },
+            { name: "ইরানি জাফরান", type: "product", quantities: [{ size: "1 গ্রাম", price: 400 }] },
+            { name: "পিঙ্ক সল্ট", type: "product", quantities: [{ size: "250 গ্রাম", price: 120}, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 480}] },
+            { name: "ডেলিভারি চার্জ", type: "delivery", quantities: [
+                { size: "ঢাকার মধ্য", price: 80 },
+                { size: "ঢাকার পার্শ্ববর্তী", price: 100 },
+                { size: "ঢাকার বাহিরে", price: 150 }
+            ]},
+            { name: "ডিসকাউন্ট", type: "discount", quantities: [
+                { size: "৫%", price: 0.05 },
+                { size: "১০%", price: 0.10 },
+                { size: "২০%", price: 0.20 },
+                { size: "৩০%", price: 0.30 }
+            ]},
+            { name: "PAID", type: "status", quantities: [{ size: "PAID", price: null }] },
+            { name: "গিফট", type: "status", quantities: [{ size: "গিফট", price: null }] },
+            { name: "রিটার্ন", type: "status", quantities: [{ size: "রিটার্ন", price: null }] }
         ];
-
-        const deliveryCharges = [
-            { name: "ঢাকায়", price: 80 },
-            { name: "ঢাকার আশেপাশে", price: 100 },
-            { name: "বাংলাদেশের অন্যত্র", price: 150 }
-        ];
-
-        const discountOptions = [5, 10, 20, 30];
 
         // State variables
         let order = [];
@@ -34,166 +40,134 @@
         let selectedDiscount = 0;
         let isGift = false;
         let isReturn = false;
+        let isPaid = false;
 
         // DOM elements
-        const productListEl = document.getElementById('productList');
+        const optionListEl = document.getElementById('optionList');
         const searchInputEl = document.getElementById('searchInput');
         const clearSearchEl = document.getElementById('clearSearch');
-        const deliveryChargesEl = document.getElementById('deliveryCharges');
-        const discountOptionsEl = document.getElementById('discountOptions');
-        const paidCheckboxEl = document.getElementById('paidCheckbox');
-        const giftButtonEl = document.getElementById('giftButton');
-        const returnButtonEl = document.getElementById('returnButton');
         const deleteButtonEl = document.getElementById('deleteButton');
         const copyButtonEl = document.getElementById('copyButton');
         const orderSummaryEl = document.getElementById('orderSummary');
 
-        // Function to render products to UI
-        function renderProducts(filteredProducts = products) {
-            productListEl.innerHTML = '';
-            filteredProducts.forEach(product => {
-                const productEl = document.createElement('div');
-                productEl.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-50 border border-gray-200 transition-shadow hover:shadow-md';
-                productEl.innerHTML = `
-                    <div class="text-gray-800 font-medium text-sm">${product.name}</div>
-                    <div class="flex items-center space-x-1">
-                        ${product.quantities.map(q => `
-                            <button data-name="${product.name}" data-size="${q.size}" data-price="${q.price}" class="product-btn px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 hover:text-blue-800 transition-colors duration-200 text-xs">
-                                ${q.size}
-                            </button>
-                        `).join('')}
-                    </div>
-                `;
-                productListEl.appendChild(productEl);
-            });
-            updateButtonStyles();
-        }
-
-        // Function to render delivery and discount options
-        function renderOptions() {
-            deliveryChargesEl.innerHTML = '';
-            deliveryCharges.forEach(charge => {
-                const button = document.createElement('button');
-                button.textContent = charge.name;
-                button.dataset.price = charge.price;
-                button.className = 'px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 hover:text-blue-800 transition-colors duration-200 delivery-btn text-xs';
-                deliveryChargesEl.appendChild(button);
-            });
-
-            discountOptionsEl.innerHTML = '';
-            discountOptions.forEach(discount => {
-                const button = document.createElement('button');
-                button.textContent = `${discount} %`;
-                button.dataset.discount = discount / 100;
-                button.className = 'px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 hover:text-blue-800 transition-colors duration-200 discount-btn text-xs';
-                discountOptionsEl.appendChild(button);
+        // Function to render all options to UI
+        function renderOptions(filteredOptions = allOptions) {
+            optionListEl.innerHTML = '';
+            let currentCategory = '';
+            filteredOptions.forEach(option => {
+                const optionEl = document.createElement('div');
+                optionEl.className = 'flex items-center justify-between p-2 rounded-lg bg-gray-50 border border-gray-200 transition-shadow hover:shadow-md';
+                
+                if (option.type === "status" && option.name === "PAID") {
+                    optionEl.innerHTML = `
+                        <div class="text-gray-800 font-medium text-sm">${option.name}</div>
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="paidCheckbox" data-name="${option.name}" data-type="${option.type}" class="status-option form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500 transition-colors duration-200">
+                        </label>
+                    `;
+                } else {
+                    optionEl.innerHTML = `
+                        <div class="text-gray-800 font-medium text-sm">${option.name}</div>
+                        <div class="flex items-center space-x-1">
+                            ${option.quantities.map(q => `
+                                <button data-name="${option.name}" data-size="${q.size}" data-price="${q.price}" data-type="${option.type}" class="option-btn px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-blue-200 hover:text-blue-800 transition-colors duration-200 text-xs">
+                                    ${q.size}
+                                </button>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+                optionListEl.appendChild(optionEl);
             });
             updateButtonStyles();
         }
         
         // Function to update button styles based on state
         function updateButtonStyles() {
-            // Product buttons
-            document.querySelectorAll('.product-btn').forEach(btn => {
-                const productName = btn.dataset.name;
-                const productSize = btn.dataset.size;
-                const existingItem = order.find(item => item.name === productName && item.size === productSize);
-                if (existingItem) {
-                    btn.classList.add('bg-blue-500', 'text-white');
-                    btn.classList.remove('bg-gray-200', 'text-gray-700');
-                } else {
-                    btn.classList.remove('bg-blue-500', 'text-white');
-                    btn.classList.add('bg-gray-200', 'text-gray-700');
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                const buttonName = btn.dataset.name;
+                const buttonType = btn.dataset.type;
+                const buttonSize = btn.dataset.size;
+
+                btn.classList.remove('bg-blue-500', 'bg-purple-500', 'bg-orange-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+
+                if (buttonType === 'product') {
+                    const existingItem = order.find(item => item.name === buttonName && item.size === buttonSize);
+                    if (existingItem) {
+                        btn.classList.add('bg-blue-500', 'text-white');
+                    }
+                } else if (buttonType === 'delivery') {
+                    if (selectedDeliveryCharge && selectedDeliveryCharge.size === buttonSize) {
+                        btn.classList.add('bg-blue-500', 'text-white');
+                    }
+                } else if (buttonType === 'discount') {
+                    const discountValue = parseFloat(btn.dataset.price);
+                    if (selectedDiscount === discountValue) {
+                        btn.classList.add('bg-blue-500', 'text-white');
+                    }
+                } else if (buttonType === 'status') {
+                    if (buttonName === 'গিফট' && isGift) {
+                        btn.classList.add('bg-purple-500', 'text-white');
+                    }
+                    if (buttonName === 'রিটার্ন' && isReturn) {
+                        btn.classList.add('bg-orange-500', 'text-white');
+                    }
                 }
             });
 
-            // Delivery buttons
-            document.querySelectorAll('.delivery-btn').forEach(btn => {
-                const buttonPrice = parseFloat(btn.dataset.price);
-                if (selectedDeliveryCharge && selectedDeliveryCharge.price === buttonPrice) {
-                    btn.classList.add('bg-blue-500', 'text-white');
-                    btn.classList.remove('bg-gray-200', 'text-gray-700');
-                } else {
-                    btn.classList.remove('bg-blue-500', 'text-white');
-                    btn.classList.add('bg-gray-200', 'text-gray-700');
-                }
-            });
-
-            // Discount buttons
-            document.querySelectorAll('.discount-btn').forEach(btn => {
-                const buttonDiscount = parseFloat(btn.dataset.discount);
-                if (selectedDiscount === buttonDiscount) {
-                    btn.classList.add('bg-blue-500', 'text-white');
-                    btn.classList.remove('bg-gray-200', 'text-gray-700');
-                } else {
-                    btn.classList.remove('bg-blue-500', 'text-white');
-                    btn.classList.add('bg-gray-200', 'text-gray-700');
-                }
-            });
-
-            // Gift button
-            if (isGift) {
-                giftButtonEl.classList.add('bg-purple-500', 'text-white');
-                giftButtonEl.classList.remove('bg-gray-200', 'text-gray-700');
-            } else {
-                giftButtonEl.classList.remove('bg-purple-500', 'text-white');
-                giftButtonEl.classList.add('bg-gray-200', 'text-gray-700');
-            }
-
-            // Return button
-            if (isReturn) {
-                returnButtonEl.classList.add('bg-orange-500', 'text-white');
-                returnButtonEl.classList.remove('bg-gray-200', 'text-gray-700');
-            } else {
-                returnButtonEl.classList.remove('bg-orange-500', 'text-white');
-                returnButtonEl.classList.add('bg-gray-200', 'text-gray-700');
+            const paidCheckboxEl = document.getElementById('paidCheckbox');
+            if (paidCheckboxEl) {
+                paidCheckboxEl.checked = isPaid;
             }
         }
 
         // Function to render order summary
         function renderSummary() {
             let totalProductPrice = 0;
-            orderSummaryEl.innerHTML = '';
-            
             let summaryContent = '';
-            order.forEach((item, index) => {
-                summaryContent += `${index + 1}. ${item.name} - ${item.size} :: ${item.price} টাকা\n`;
-                totalProductPrice += item.price;
-            });
             
-            // Add a gap after the product list
+            summaryContent += '<ul class="list-none space-y-2">';
+            order.forEach((item, index) => {
+                summaryContent += `<li class="flex items-center justify-between">
+                    <span class="flex-grow">${index + 1}. ${item.quantity}x ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা</span>
+                    <button class="delete-btn bg-red-500 text-white w-5 h-5 flex items-center justify-center rounded-full text-xs font-bold" data-index="${index}">-</button>
+                </li>`;
+                totalProductPrice += item.price * item.quantity;
+            });
+            summaryContent += '</ul>';
+
             if(order.length > 0) {
                 summaryContent += '\n';
             }
 
             let deliveryPrice = selectedDeliveryCharge ? selectedDeliveryCharge.price : 0;
-            let totalWithDelivery = totalProductPrice + deliveryPrice;
-            let discountAmount = totalWithDelivery * selectedDiscount;
-            let finalTotal = totalWithDelivery - discountAmount;
+            let discountAmount = totalProductPrice * selectedDiscount;
+            let discountedProductPrice = totalProductPrice - discountAmount;
+            let finalTotal = discountedProductPrice + deliveryPrice;
             
-            if (selectedDeliveryCharge) {
-                summaryContent += `ডেলিভারি চার্জ - ${selectedDeliveryCharge.name}: ${selectedDeliveryCharge.price} টাকা\n`;
-            }
             if (selectedDiscount > 0) {
-                summaryContent += `ডিসকাউন্ট (${selectedDiscount * 100}%): -${discountAmount.toFixed(0)} টাকা\n`;
+                summaryContent += `<div class="mt-2"><span>ডিসকাউন্ট - ${selectedDiscount * 100}% [ডেলিভারি চার্জ ডিসকাউন্ট যোগ্য নয়]</span></div>`;
+                summaryContent += `<div class="flex justify-between mt-2"><span>ডিসকাউন্ট এর পূর্বে:</span><span>${totalProductPrice.toFixed(0)} টাকা</span></div>`;
+                summaryContent += `<div class="flex justify-between"><span>ডিসকাউন্ট দিয়ে:</span><span>${discountedProductPrice.toFixed(0)} টাকা</span></div>`;
+            }
+            if (selectedDeliveryCharge) {
+                summaryContent += `<div class="flex justify-between mt-2"><span>ডেলিভারি চার্জ:</span><span>${selectedDeliveryCharge.price} টাকা</span></div>`;
             }
             if (isGift) {
-                 summaryContent += `গিফট\n`;
+                 summaryContent += `<div class="mt-2 text-center text-gray-600">গিফট</div>`;
             }
             if (isReturn) {
-                summaryContent += `রিটার্ন\n`;
+                summaryContent += `<div class="mt-2 text-center text-gray-600">রিটার্ন</div>`;
             }
             
-            // Render the "মোট" and total amount on separate lines
-            summaryContent += `\nমোট:\n${finalTotal.toFixed(0)} টাকা\n`;
+            summaryContent += `<div class="mt-4 pt-2 border-t border-gray-300 flex justify-between font-bold"><span>মোট: ${finalTotal.toFixed(0)} টাকা</span></div>`;
 
-            if (paidCheckboxEl.checked) {
-                summaryContent += `\nPAID`;
-            } else {
-                summaryContent += `\nUNPAID`;
+            if (isPaid) {
+                summaryContent += `<div class="mt-2 text-center font-bold text-green-600">PAID</div>`;
             }
 
-            orderSummaryEl.textContent = summaryContent.trim();
+            orderSummaryEl.innerHTML = summaryContent.trim();
         }
 
         // Function to update all UI elements
@@ -203,131 +177,107 @@
         }
 
         // Event Listeners
-        productListEl.addEventListener('click', (e) => {
-            const button = e.target.closest('.product-btn');
-            if (button) {
-                const productName = button.dataset.name;
-                const productSize = button.dataset.size;
-                const productPrice = parseFloat(button.dataset.price);
+        optionListEl.addEventListener('click', (e) => {
+            const button = e.target.closest('.option-btn');
+            const checkbox = e.target.closest('input[type="checkbox"]');
 
-                const existingIndex = order.findIndex(item => item.name === productName && item.size === productSize);
-                
-                if (existingIndex === -1) {
-                    order.push({ name: productName, size: productSize, price: productPrice });
-                } else {
-                    order.splice(existingIndex, 1);
+            if (button) {
+                const optionName = button.dataset.name;
+                const optionType = button.dataset.type;
+                const optionSize = button.dataset.size;
+                const optionPrice = parseFloat(button.dataset.price);
+
+                if (optionType === 'product') {
+                    const existingItem = order.find(item => item.name === optionName && item.size === optionSize);
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        order.push({ name: optionName, size: optionSize, price: optionPrice, type: optionType, quantity: 1 });
+                    }
+                } else if (optionType === 'delivery') {
+                    selectedDeliveryCharge = selectedDeliveryCharge && selectedDeliveryCharge.size === optionSize ? null : { name: optionSize, price: optionPrice };
+                } else if (optionType === 'discount') {
+                    selectedDiscount = selectedDiscount === optionPrice ? 0 : optionPrice;
+                } else if (optionType === 'status') {
+                    if (optionSize === 'গিফট') {
+                        isGift = !isGift;
+                    } else if (optionSize === 'রিটার্ন') {
+                        isReturn = !isReturn;
+                    }
+                }
+                updateAll();
+            }
+
+            if (checkbox) {
+                if (checkbox.dataset.name === "PAID") {
+                    isPaid = checkbox.checked;
                 }
                 updateAll();
             }
         });
 
-        deliveryChargesEl.addEventListener('click', (e) => {
-            const button = e.target.closest('.delivery-btn');
-            if (button) {
-                const chargeName = button.textContent;
-                const chargePrice = parseFloat(button.dataset.price);
-                
-                if (selectedDeliveryCharge && selectedDeliveryCharge.name === chargeName) {
-                    selectedDeliveryCharge = null;
+        // Event listener for removing items from the summary
+        orderSummaryEl.addEventListener('click', (e) => {
+            const deleteBtn = e.target.closest('.delete-btn');
+            if (deleteBtn) {
+                const index = parseInt(deleteBtn.dataset.index);
+                if (order[index].quantity > 1) {
+                    order[index].quantity--;
                 } else {
-                    selectedDeliveryCharge = { name: chargeName, price: chargePrice };
+                    order.splice(index, 1);
                 }
                 updateAll();
             }
         });
-
-        discountOptionsEl.addEventListener('click', (e) => {
-            const button = e.target.closest('.discount-btn');
-            if (button) {
-                const discountValue = parseFloat(button.dataset.discount);
-                
-                if (selectedDiscount === discountValue) {
-                    selectedDiscount = 0;
-                } else {
-                    selectedDiscount = discountValue;
-                }
-                updateAll();
-            }
-        });
-
-        giftButtonEl.addEventListener('click', () => {
-            isGift = !isGift;
-            updateAll();
-        });
-
-        returnButtonEl.addEventListener('click', () => {
-            isReturn = !isReturn;
-            updateAll();
-        });
-
-        paidCheckboxEl.addEventListener('change', updateAll);
 
         deleteButtonEl.addEventListener('click', () => {
             order = [];
             selectedDeliveryCharge = null;
             selectedDiscount = 0;
-            paidCheckboxEl.checked = false;
+            isPaid = false;
             isGift = false;
             isReturn = false;
             updateAll();
         });
 
         copyButtonEl.addEventListener('click', () => {
-            const textToCopy = orderSummaryEl.textContent;
-            try {
-                // Clipboard API is often blocked in iframes. Using document.execCommand as a fallback.
-                const tempTextArea = document.createElement('textarea');
-                tempTextArea.value = textToCopy;
-                tempTextArea.style.position = 'fixed';
-                tempTextArea.style.left = '-9999px';
-                tempTextArea.style.top = '0';
-                document.body.appendChild(tempTextArea);
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = orderSummaryEl.innerText;
+            tempTextArea.style.position = 'fixed';
+            tempTextArea.style.left = '-9999px';
+            tempTextArea.style.top = '0';
+            document.body.appendChild(tempTextArea);
 
-                tempTextArea.select();
-                tempTextArea.setSelectionRange(0, 99999);
-                document.execCommand('copy');
-                
-                document.body.removeChild(tempTextArea);
+            tempTextArea.select();
+            tempTextArea.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+            
+            document.body.removeChild(tempTextArea);
 
-                // Update UI to show success
-                copyButtonEl.textContent = 'Copied!';
-                setTimeout(() => {
-                    copyButtonEl.textContent = 'Copy';
-                }, 2000);
-
-            } catch (err) {
-                console.error('Failed to copy text: ', err);
-            }
-        });
-
-        orderSummaryEl.addEventListener('click', (e) => {
-            const button = e.target.closest('.delete-btn-product');
-            if (button) {
-                const index = parseInt(button.dataset.index, 10);
-                order.splice(index, 1);
-                updateAll();
-            }
+            copyButtonEl.textContent = 'Copied!';
+            setTimeout(() => {
+                copyButtonEl.textContent = 'Copy';
+            }, 2000);
         });
 
         searchInputEl.addEventListener('input', (e) => {
             const searchTerm = e.target.value.toLowerCase().trim();
             if (searchTerm) {
                 clearSearchEl.classList.remove('hidden');
-                const filtered = products.filter(p => p.name.toLowerCase().includes(searchTerm));
-                renderProducts(filtered);
+                const filtered = allOptions.filter(p => p.name.toLowerCase().includes(searchTerm));
+                renderOptions(filtered);
             } else {
                 clearSearchEl.classList.add('hidden');
-                renderProducts(products);
+                renderOptions(allOptions);
             }
         });
 
         clearSearchEl.addEventListener('click', () => {
             searchInputEl.value = '';
             clearSearchEl.classList.add('hidden');
-            renderProducts(products);
+            renderOptions(allOptions);
         });
 
         // Initial render
-        renderProducts();
         renderOptions();
         updateAll();
