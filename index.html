@@ -14,23 +14,21 @@
             background-color: #f3f4f6;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Aligned to the top for better mobile view */
             min-height: 100vh;
-            overflow: hidden; /* Prevent body scroll */
+            padding: 1rem;
         }
         .app-container {
-            height: 95vh; /* Fixed height for the entire app container */
             width: 100%;
             max-width: 900px;
             display: flex;
             flex-direction: column;
-            padding: 1.5rem;
+            min-height: 95vh;
         }
         @media (min-width: 768px) {
             .app-container {
                 flex-direction: row;
                 height: 95vh;
-                padding: 2rem;
             }
         }
         .scrollable-list {
@@ -93,7 +91,7 @@
         <div class="flex-1 flex flex-col p-4 md:p-6 overflow-hidden">
              <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 flex-1 flex flex-col">
                 <h2 class="text-xl font-semibold text-gray-800 mb-4 flex-shrink-0">নির্বাচিত প্রোডাক্টস</h2>
-                <div id="selectedItemsList" class="space-y-1 border rounded-lg p-5 bg-white selected-list-output flex-1 mb-4">
+                <div id="selectedItemsList" class="space-y-1 border rounded-lg p-2 bg-white selected-list-output flex-1 mb-4">
                     <!-- Selected items will be rendered here as a list -->
                 </div>
                 <div id="totalAmount" class="text-right text-base font-bold text-gray-800 space-y-1 flex-shrink-0">
@@ -108,7 +106,7 @@
         </div>
     </div>
     <script src="script.js">
-        
+       
     </script>
 </body>
 </html>
