@@ -1,4 +1,4 @@
-       // Consolidated data for all options
+   // Consolidated data for all options
         const allOptions = [
             { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500 }] },
@@ -62,12 +62,12 @@
             messageBox.classList.add('show');
             setTimeout(() => {
                 messageBox.classList.remove('show');
-            }, 3000);
+            }, 1500); // reduced timeout for faster feedback
         }
 
         // Function to render all options to UI
         function renderOptions(filteredOptions = allOptions) {
-            optionListEl.innerHTML = '';
+            const fragment = document.createDocumentFragment();
             filteredOptions.forEach(option => {
                 const optionEl = document.createElement('div');
                 optionEl.className = 'flex items-center justify-between p-2 rounded-lg bg-white border border-gray-200 transition-shadow hover:shadow-md';
@@ -102,8 +102,10 @@
                         </div>
                     `;
                 }
-                optionListEl.appendChild(optionEl);
+                fragment.appendChild(optionEl);
             });
+            optionListEl.innerHTML = ''; // Clear before appending
+            optionListEl.appendChild(fragment);
             updateButtonStyles();
         }
         
@@ -152,23 +154,23 @@
             let totalProductPrice = 0;
             let summaryContent = '';
             
-            summaryContent += '<ul class="list-none space-y-2">';
-            order.forEach((item, index) => {
-                summaryContent += `<li class="flex items-center justify-between">
-                    <span class="flex-grow">${index + 1}. ${item.quantity}x ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা</span>
-                    <button class="delete-btn text-gray-500 hover:text-red-500 focus:outline-none transition-colors duration-200" data-index="${index}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </li>`;
-                totalProductPrice += item.price * item.quantity;
-            });
-            summaryContent += '</ul>';
-
-            if(order.length > 0) {
-                summaryContent += '\n';
+            if (order.length > 0) {
+                summaryContent += '<ul class="list-none space-y-2">';
+                order.forEach((item, index) => {
+                    summaryContent += `<li class="flex items-center justify-between">
+                        <span class="flex-grow">${index + 1}. ${item.quantity}x ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা</span>
+                        <button class="delete-btn text-gray-500 hover:text-red-500 focus:outline-none transition-colors duration-200" data-index="${index}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </li>`;
+                    totalProductPrice += item.price * item.quantity;
+                });
+                summaryContent += '</ul>';
+                summaryContent += '<br>'; // Add a line break for the gap
             }
+
 
             let deliveryPrice = selectedDeliveryCharge ? selectedDeliveryCharge.price : 0;
             let discountAmount = totalProductPrice * selectedDiscount;
@@ -182,7 +184,6 @@
             }
             if (selectedDeliveryCharge) {
                 summaryContent += `<div class="mt-2"><span>ডেলিভারি চার্জ: ${selectedDeliveryCharge.price} টাকা</span></div>`;
-                summaryContent += `<div><span>ডেলিভারি চার্জ এডের পরে</span></div>`;
             }
             if (isGift) {
                  summaryContent += `<div class="mt-2 text-center text-gray-600">গিফট</div>`;
@@ -274,29 +275,41 @@
 
         copyButtonEl.addEventListener('click', () => {
             const tempTextArea = document.createElement('textarea');
-            // Re-render the summary with the exact copy format
-            let copyContent = '';
+            let copyLines = [];
+
+            // Add product lines with 'GM'
             order.forEach((item, index) => {
-                copyContent += `${index + 1}. ${item.quantity}x ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা\n`;
+                const sizeGM = item.size.replace('গ্রাম', 'GM');
+                copyLines.push(`${index + 1}. ${item.quantity}x ${item.name} - ${sizeGM} :: ${item.price * item.quantity} টাকা`);
             });
             
+            // Add a gap if there are products
+            if (order.length > 0) {
+                copyLines.push('');
+            }
+
             let totalProductPrice = order.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             let deliveryPrice = selectedDeliveryCharge ? selectedDeliveryCharge.price : 0;
             let discountAmount = totalProductPrice * selectedDiscount;
             let discountedProductPrice = totalProductPrice - discountAmount;
             let finalTotal = discountedProductPrice + deliveryPrice;
 
+            // Add discount details if applicable
             if (selectedDiscount > 0) {
-                copyContent += `\nডিসকাউন্ট - ${selectedDiscount * 100}% [ডেলিভারি চার্জ ডিসকাউন্ট যোগ্য নয়]\n`;
-                copyContent += `ডিসকাউন্ট এর পূর্বে: ${totalProductPrice.toFixed(0)} টাকা\n`;
-                copyContent += `ডিসকাউন্ট দিয়ে: ${discountedProductPrice.toFixed(0)} টাকা\n`;
+                copyLines.push(`ডিসকাউন্ট - ${selectedDiscount * 100}% [ডেলিভারি চার্জ ডিসকাউন্ট যোগ্য নয়]`);
+                copyLines.push(`ডিসকাউন্ট এর পূর্বে: ${totalProductPrice.toFixed(0)} টাকা`);
+                copyLines.push(`ডিসকাউন্ট দিয়ে: ${discountedProductPrice.toFixed(0)} টাকা`);
             }
+            
+            // Add delivery charge details if applicable
             if (selectedDeliveryCharge) {
-                copyContent += `ডেলিভারি চার্জ: ${selectedDeliveryCharge.price} টাকা\n`;
+                copyLines.push(`ডেলিভারি চার্জ: ${selectedDeliveryCharge.price} টাকা`);
             }
-            copyContent += `মোট: ${finalTotal.toFixed(0)} টাকা\n`;
 
-            tempTextArea.value = copyContent.trim();
+            // Add total
+            copyLines.push(`মোট: ${finalTotal.toFixed(0)} টাকা`);
+
+            tempTextArea.value = copyLines.join('\n');
             tempTextArea.style.position = 'fixed';
             tempTextArea.style.left = '-9999px';
             tempTextArea.style.top = '0';
