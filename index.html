@@ -46,9 +46,28 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        .message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .message-box.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
+
+    <div class="message-box" id="messageBox"></div>
 
     <div class="container">
         <!-- Header Section -->
@@ -98,7 +117,8 @@
 
     <!-- JavaScript code -->
     <script src="script.js">
-   
+     
+
     </script>
 </body>
 </html>
