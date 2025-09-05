@@ -1,4 +1,4 @@
-     // Consolidated data for all options
+  // Consolidated data for all options
         const allOptions = [
             { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500 }] },
@@ -50,6 +50,21 @@
         const copyButtonEl = document.getElementById('copyButton');
         const orderSummaryEl = document.getElementById('orderSummary');
 
+        // Function to show a message box
+        function showMessage(message, type = 'success') {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.textContent = message;
+            if (type === 'success') {
+                messageBox.style.backgroundColor = '#4CAF50';
+            } else {
+                messageBox.style.backgroundColor = '#F44336';
+            }
+            messageBox.classList.add('show');
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 3000);
+        }
+
         // Function to render all options to UI
         function renderOptions(filteredOptions = allOptions) {
             optionListEl.innerHTML = '';
@@ -57,11 +72,22 @@
                 const optionEl = document.createElement('div');
                 optionEl.className = 'flex items-center justify-between p-2 rounded-lg bg-white border border-gray-200 transition-shadow hover:shadow-md';
                 
-                if (option.type === "status" && option.name === "PAID") {
+                if (option.type === "status") {
                     optionEl.innerHTML = `
+                        <div class="text-gray-800 font-medium text-xs">${option.name}</div>
+                        <div class="flex items-center space-x-1">
+                            ${option.quantities.map(q => `
+                                <button data-name="${option.name}" data-size="${q.size}" data-price="${q.price}" data-type="${option.type}" class="option-btn px-3 py-1 rounded-lg bg-gray-200 text-gray-700 font-semibold hover:bg-purple-200 hover:text-purple-800 transition-colors duration-200 text-xs">
+                                    ${q.size}
+                                </button>
+                            `).join('')}
+                        </div>
+                    `;
+                } else if (option.name === "PAID") {
+                     optionEl.innerHTML = `
                         <div class="text-gray-800 font-medium text-xs">PAID</div>
                         <label class="flex items-center space-x-2 cursor-pointer">
-                            <input type="checkbox" id="paidCheckbox" data-name="${option.name}" data-type="${option.type}" class="status-option form-checkbox h-4 w-4 text-purple-600 rounded focus:ring-purple-500 focus:ring-opacity-50 transition-colors duration-200">
+                            <input type="checkbox" id="paidCheckbox" data-name="${option.name}" data-type="${option.type}" class="status-option form-checkbox h-4 w-4 text-purple-600 rounded focus:ring-purple-500 focus:ring-opacity-50 transition-colors duration-200" ${isPaid ? 'checked' : ''}>
                         </label>
                     `;
                 } else {
@@ -97,7 +123,7 @@
                         btn.classList.add('bg-purple-500', 'text-white');
                     }
                 } else if (buttonType === 'delivery') {
-                    if (selectedDeliveryCharge && selectedDeliveryCharge.size === buttonSize) {
+                    if (selectedDeliveryCharge && selectedDeliveryCharge.name === buttonSize) {
                         btn.classList.add('bg-purple-500', 'text-white');
                     }
                 } else if (buttonType === 'discount') {
@@ -129,8 +155,8 @@
             summaryContent += '<ul class="list-none space-y-2">';
             order.forEach((item, index) => {
                 summaryContent += `<li class="flex items-center justify-between">
-                    <span class="flex-grow">${index + 1}. ${item.quantity}x ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা</span>
-                    <button class="delete-btn text-gray-500 hover:text-red-500 focus:outline-none transition-colors duration-200">
+                    <span class="flex-grow">${index + 1}. ${item.name} - ${item.size} :: ${item.price * item.quantity} টাকা</span>
+                    <button class="delete-btn text-gray-500 hover:text-red-500 focus:outline-none transition-colors duration-200" data-index="${index}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
                         </svg>
@@ -151,11 +177,11 @@
             
             if (selectedDiscount > 0) {
                 summaryContent += `<div class="mt-2"><span>ডিসকাউন্ট - ${selectedDiscount * 100}% [ডেলিভারি চার্জ ডিসকাউন্ট যোগ্য নয়]</span></div>`;
-                summaryContent += `<div class="flex justify-between mt-2"><span>ডিসকাউন্ট এর পূর্বে:</span><span>${totalProductPrice.toFixed(0)} টাকা</span></div>`;
-                summaryContent += `<div class="flex justify-between"><span>ডিসকাউন্ট দিয়ে:</span><span>${discountedProductPrice.toFixed(0)} টাকা</span></div>`;
+                summaryContent += `<div class="mt-2"><span>ডিসকাউন্ট এর পূর্বে - ${totalProductPrice.toFixed(0)} টাকা</span></div>`;
+                summaryContent += `<div><span>ডিসকাউন্ট দিয়ে - ${discountedProductPrice.toFixed(1)} টাকা</span></div>`;
             }
             if (selectedDeliveryCharge) {
-                summaryContent += `<div class="flex justify-between mt-2"><span>ডেলিভারি চার্জ:</span><span>${selectedDeliveryCharge.price} টাকা</span></div>`;
+                summaryContent += `<div class="mt-2"><span>ডেলিভারি চার্জ এডের পরে</span></div>`;
             }
             if (isGift) {
                  summaryContent += `<div class="mt-2 text-center text-gray-600">গিফট</div>`;
@@ -164,7 +190,7 @@
                 summaryContent += `<div class="mt-2 text-center text-gray-600">রিটার্ন</div>`;
             }
             
-            summaryContent += `<div class="mt-4 pt-2 border-t border-gray-300 flex justify-between font-bold"><span>মোট: ${finalTotal.toFixed(0)} টাকা</span></div>`;
+            summaryContent += `<div class="mt-4 pt-2 border-t border-gray-300 font-bold"><span>মোট ${finalTotal.toFixed(0)} টাকা</span></div>`;
 
             if (isPaid) {
                 summaryContent += `<div class="mt-2 text-center font-bold text-green-600">PAID</div>`;
@@ -198,7 +224,7 @@
                         order.push({ name: optionName, size: optionSize, price: optionPrice, type: optionType, quantity: 1 });
                     }
                 } else if (optionType === 'delivery') {
-                    selectedDeliveryCharge = selectedDeliveryCharge && selectedDeliveryCharge.size === optionSize ? null : { name: optionSize, price: optionPrice };
+                    selectedDeliveryCharge = selectedDeliveryCharge && selectedDeliveryCharge.name === optionSize ? null : { name: optionSize, price: optionPrice };
                 } else if (optionType === 'discount') {
                     selectedDiscount = selectedDiscount === optionPrice ? 0 : optionPrice;
                 } else if (optionType === 'status') {
@@ -240,7 +266,9 @@
             isPaid = false;
             isGift = false;
             isReturn = false;
+            renderOptions();
             updateAll();
+            showMessage('অর্ডার মুছে ফেলা হয়েছে!', 'success');
         });
 
         copyButtonEl.addEventListener('click', () => {
@@ -257,10 +285,7 @@
             
             document.body.removeChild(tempTextArea);
 
-            copyButtonEl.textContent = 'Copied!';
-            setTimeout(() => {
-                copyButtonEl.textContent = 'Copy';
-            }, 2000);
+            showMessage('অর্ডার কপি করা হয়েছে!', 'success');
         });
 
         searchInputEl.addEventListener('input', (e) => {
@@ -282,5 +307,7 @@
         });
 
         // Initial render
-        renderOptions();
-        updateAll();
+        window.onload = function() {
+            renderOptions();
+            updateAll();
+        };
