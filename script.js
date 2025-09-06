@@ -2,7 +2,7 @@
         const allOptions = [
             { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 260 }, { size: "1 কেজি", price: 500 }] },
-            { name: "সিরিয়াল স্টেজ ২", type: "product", quantities: [{ size: "250 গ্রাম", price: 180 }, { size: "500 গ্রাম", price: 350 }, { size: "1 কেজি", price: 700 }] },
+            { name: "সিরিয়াল স্টেজ ২", type: "product", quantities: [{ size: "250 গ্রাম", price: 220 }, { size: "500 গ্রাম", price: 420 }, { size: "1 কেজি", price: 800 }] },
             { name: "হোমমেড ওটস(ওটমিল)", type: "product", quantities: [{ size: "250 গ্রাম", price: 420 }, { size: "500 গ্রাম", price: 820 }, { size: "1 কেজি", price: 1600 }] },
             { name: "জাফরানি ফিরনি মিক্সড", type: "product", quantities: [{ size: "250 গ্রাম", price: 220 }, { size: "500 গ্রাম", price: 420}, { size: "1 কেজি", price: 800}] },
             { name: "সাগুদানা", type: "product", quantities: [{ size: "500 গ্রাম", price: 150}, { size: "1 কেজি", price: 300}] },
@@ -19,7 +19,7 @@
             { name: "ইরানি জাফরান", type: "product", quantities: [{ size: "1 গ্রাম", price: 400 }] },
             { name: "পিঙ্ক সল্ট", type: "product", quantities: [{ size: "250 গ্রাম", price: 120}, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 480}] },
             { name: "ডেলিভারি চার্জ", type: "delivery", quantities: [
-                { size: "ঢাকার মধ্য", price: 80 },
+                { size: "ঢাকার মধ্যে ", price: 80 },
                 { size: "ঢাকার পার্শ্ববর্তী", price: 100 },
                 { size: "ঢাকার বাহিরে", price: 150 }
             ]},
