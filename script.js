@@ -10,7 +10,7 @@
             { name: "রাইস স্পেশাল সুজি", type: "product", quantities: [{ size: "250 গ্রাম", price: 120}, { size: "500 গ্রাম", price: 240}, { size: "1 কেজি", price: 450}] },
             { name: "আয়রনসমৃদ্ধ পুষ্টিকর বিন্নি সুজি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500}] },
             { name: "মাল্টিগ্রেইন বাদাম সুজি", type: "product", quantities: [{ size: "250 গ্রাম", price: 140}, { size: "500 গ্রাম", price: 280}, { size: "1 কেজি", price: 550}] },
-            { name: "বার্লি সিরিয়াল (তালবিনা)", type: "product", quantities: [{ size: "250 গ্রাম", price: 200 }, { size: "500 গ্রাম", price: 400 },{ size: "1 কেজি", price: 800}] },
+            { name: "বার্লি সিরিয়াল (তালবিনা)", type: "product", quantities: [{ size: "250 গ্রাম", price: 190 }, { size: "500 গ্রাম", price: 380 },{ size: "1 কেজি", price: 750}] },
             { name: "তাল মিছরি", type: "product", quantities: [{ size: "200 গ্রাম", price: 130}, { size: "500 গ্রাম", price: 220 }, { size: "1 কেজি", price: 400}] },
             { name: "খেজুর চিনি", type: "product", quantities: [{ size: "250 গ্রাম", price: 225 }, { size: "500 গ্রাম", price: 450 }, { size: "1 কেজি", price: 900}] },
             { name: "আলমারাই চিজ", type: "product", quantities: [{ size: "8 পিস", price: 300 }, { size: "32 ফুল বক্স", price: 1200 }] },
