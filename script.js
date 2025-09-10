@@ -1,6 +1,6 @@
    // Consolidated data for all options
         const allOptions = [
-            { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 120 }, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 450 }] },
+            { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 120 }, { size: "500 গ্রাম", price: 240 }, { size: "1 কেজি", price: 450 }] },
             { name: "সিরিয়াল স্টেজ ২", type: "product", quantities: [{ size: "250 গ্রাম", price: 190 }, { size: "500 গ্রাম", price: 380 }, { size: "1 কেজি", price: 750 }] },
             { name: "হোমমেড ওটস(ওটমিল)", type: "product", quantities: [{ size: "250 গ্রাম", price: 380 }, { size: "500 গ্রাম", price: 750 }, { size: "1 কেজি", price: 1500 }] },
