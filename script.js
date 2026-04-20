@@ -1,5 +1,10 @@
    // Consolidated data for all options
         const allOptions = [
+             { name: "ডেলিভারি চার্জ", type: "delivery", quantities: [
+                { size: "ঢাকার মধ্যে ", price: 80 },
+                { size: "ঢাকার পার্শ্ববর্তী", price: 100 },
+                { size: "ঢাকার বাহিরে", price: 150 }
+            ]},
             { name: "রাজমা খিচুড়ি", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "কাউন খিচুড়ি ", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
             { name: "সিরিয়াল স্টেজ ১", type: "product", quantities: [{ size: "250 গ্রাম", price: 130 }, { size: "500 গ্রাম", price: 250 }, { size: "1 কেজি", price: 500 }] },
@@ -29,7 +34,7 @@
             { name: "মিক্সড  নুডুলস  ", type: "product", quantities: [{ size: "250 গ্রাম", price: 200}, { size: "500 গ্রাম", price: 400 }, { size: "1 কেজি", price: 800}] },
             { name: "রাইস নুডুলস  ", type: "product", quantities: [{ size: "250 গ্রাম", price: 180}, { size: "500 গ্রাম", price: 360 }, { size: "1 কেজি", price: 700}] },
             { name: "পালংশাক  নুডুলস  ", type: "product", quantities: [{ size: "250 গ্রাম", price: 140}, { size: "500 গ্রাম", price: 280 }, { size: "1 কেজি", price: 550}] },
-            { name: "নুডুলস মসলা   ", type: "product", quantities: [{ size: "100 গ্রাম", price: 100}, { size: "200 গ্রাম", price: 200 } ] },
+            { name: "নুডুলস মসলা   ", type: "product", quantities: [{ size: "50 গ্রাম", price: 100}, { size: "100 গ্রাম", price: 200 } ] },
             { name: "হোমমেড  ঘি    ", type: "product", quantities: [{ size: "200 গ্রাম", price: 350}, { size: "400 গ্রাম", price: 700 } ] },
             { name:"জাফরানি নাট মিল্ক শেক  ", type: "product", quantities: [{ size: "250 গ্রাম", price: 420}, { size: "500 গ্রাম", price: 840 }, { size: "1 কেজি", price: 1650}] },
             { name: "হলুদ গুড়া    ", type: "product", quantities: [{ size: "200 গ্রাম", price: 200}, { size: "400 গ্রাম", price: 400 } ] },
@@ -40,11 +45,7 @@
             { name: "চিয়া সিড   ", type: "product", quantities: [{ size: "100 গ্রাম", price: 100}, { size: "200 গ্রাম", price: 200 }, { size: "500 গ্রাম", price: 480}] },
             { name: "খাটি সরিষার তেল  ", type: "product", quantities: [{ size: "250 ML", price: 80}, { size: "500 ML", price: 160 }, { size: "1 L", price: 300}] },
 
-            { name: "ডেলিভারি চার্জ", type: "delivery", quantities: [
-                { size: "ঢাকার মধ্যে ", price: 80 },
-                { size: "ঢাকার পার্শ্ববর্তী", price: 100 },
-                { size: "ঢাকার বাহিরে", price: 150 }
-            ]},
+           
             { name: "ডিসকাউন্ট", type: "discount", quantities: [
                 { size: "৫%", price: 0.05 },
                 { size: "১০%", price: 0.10 },
